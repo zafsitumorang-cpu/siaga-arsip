@@ -5,6 +5,7 @@ import Landing from './pages/Landing';
 import Login from './pages/Login';
 import AuthenticatedApp from './AuthenticatedApp';
 import { ToastProvider } from './components/Toast';
+import { PageLoading } from './components/Loading';
 
 interface Me {
   username: string;
@@ -31,9 +32,7 @@ export default function App() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center text-slate-500">Memuat…</div>
-    );
+    return <PageLoading text="Memuat SIAGA ARSIP…" />;
   }
 
   if (!me) {

@@ -1,6 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { api, ApiError } from '../lib/api';
 import { useToast } from '../components/Toast';
+import { LoadingButton } from '../components/Loading';
 
 const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
 
@@ -139,13 +140,13 @@ export default function UploadArsip() {
           </p>
         )}
 
-        <button
+        <LoadingButton
           type="submit"
-          disabled={submitting}
-          className="rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+          loading={submitting}
+          className="rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
         >
           {submitting ? 'Mengunggah…' : 'Unggah'}
-        </button>
+        </LoadingButton>
       </form>
     </div>
   );

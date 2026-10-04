@@ -14,6 +14,7 @@ import {
 } from 'recharts';
 import { api } from '../lib/api';
 import { StatCard } from '../components/StatCard';
+import { PageLoading } from '../components/Loading';
 import { FolderOpen, FileCheck2, Cloud } from 'lucide-react';
 
 interface Statistik {
@@ -34,7 +35,7 @@ export default function Laporan() {
   }, []);
 
   if (!statistik) {
-    return <p className="text-slate-500">Memuat laporan…</p>;
+    return <PageLoading text="Memuat laporan…" />;
   }
 
   const statusData = [

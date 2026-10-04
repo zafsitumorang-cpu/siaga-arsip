@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { api, ApiError } from '../lib/api';
 import { StatusBadge } from '../components/StatCard';
 import { useToast } from '../components/Toast';
+import { PageLoading } from '../components/Loading';
 
 interface ArsipDetail {
   id: number;
@@ -61,7 +62,7 @@ export default function DetailArsip() {
   }
 
   if (!arsip) {
-    return <p className="text-slate-500">Memuat…</p>;
+    return <PageLoading text="Memuat arsip…" />;
   }
 
   return (

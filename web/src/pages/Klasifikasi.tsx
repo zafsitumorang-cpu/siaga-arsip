@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FolderKanban, Scale, ShieldAlert, Users, FolderOpen } from 'lucide-react';
 import { api } from '../lib/api';
+import { PageLoading } from '../components/Loading';
 
 interface Statistik {
   total: number;
@@ -59,7 +60,7 @@ export default function Klasifikasi() {
   );
 
   if (!statistik) {
-    return <p className="text-slate-500">Memuat klasifikasi…</p>;
+    return <PageLoading text="Memuat klasifikasi…" />;
   }
 
   return (

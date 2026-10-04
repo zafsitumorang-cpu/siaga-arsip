@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { Skeleton, StatSkeletonGrid, TableSkeletonRows } from '../components/Loading';
 import {
   ArrowRight,
   BarChart3,
@@ -69,7 +70,20 @@ export default function Beranda() {
   }, []);
 
   if (!statistik) {
-    return <p className="text-slate-500">Memuat statistik…</p>;
+    return (
+      <div className="space-y-6">
+        <div className="h-40 animate-pulse rounded-2xl bg-slate-200/70" />
+        <StatSkeletonGrid />
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <Skeleton className="mb-4 h-5 w-40" />
+          <table className="w-full text-sm">
+            <tbody>
+              <TableSkeletonRows rows={5} cols={4} />
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
   }
 
   return (
