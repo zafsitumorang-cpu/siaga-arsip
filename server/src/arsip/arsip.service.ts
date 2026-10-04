@@ -50,7 +50,12 @@ export class ArsipService {
       ...(query.status ? { status: query.status } : {}),
       ...(query.subbagianId ? { subbagianId: query.subbagianId } : {}),
       ...(query.search
-        ? { judul: { contains: query.search, mode: Prisma.QueryMode.insensitive } }
+        ? {
+            OR: [
+              { judul: { contains: query.search, mode: Prisma.QueryMode.insensitive } },
+              { nomor: { contains: query.search, mode: Prisma.QueryMode.insensitive } },
+            ],
+          }
         : {}),
     };
 

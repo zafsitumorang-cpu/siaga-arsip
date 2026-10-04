@@ -4,6 +4,9 @@ import DaftarArsip from './pages/DaftarArsip';
 import UploadArsip from './pages/UploadArsip';
 import DetailArsip from './pages/DetailArsip';
 import Laporan from './pages/Laporan';
+import Klasifikasi from './pages/Klasifikasi';
+import Profil from './pages/Profil';
+import Pengaturan from './pages/Pengaturan';
 import Layout from './components/Layout';
 
 interface Me {
@@ -21,6 +24,9 @@ export default function AuthenticatedApp({ me }: { me: Me }) {
         <Route path="/arsip/:id" element={<DetailArsip />} />
         <Route path="/upload" element={<UploadArsip />} />
         <Route path="/laporan" element={<Laporan />} />
+        <Route path="/klasifikasi" element={<Klasifikasi />} />
+        <Route path="/profil" element={<Profil />} />
+        <Route path="/pengaturan" element={<Pengaturan />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
