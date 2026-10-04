@@ -103,7 +103,7 @@ export default function Landing() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <main className="min-h-screen bg-slate-950 text-white">
       {/* NAVBAR */}
       <nav className="sticky top-0 z-40 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
@@ -274,13 +274,13 @@ export default function Landing() {
             <span className="flex h-7 w-7 items-center justify-center rounded-md bg-red-600 text-xs font-black">SA</span>
             <span className="text-sm text-slate-400">© 2026 Bawaslu Kabupaten Aceh Timur</span>
           </div>
-          <div className="flex gap-6 text-sm text-slate-500">
+          <div className="flex gap-6 text-sm text-slate-400">
             <span>Tentang Aplikasi</span>
             <span>Bantuan</span>
             <span>Kontak</span>
           </div>
         </div>
       </footer>
-    </div>
+    </main>
   );
 }
