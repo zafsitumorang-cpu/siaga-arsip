@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { api, ApiError } from './lib/api';
+import Landing from './pages/Landing';
 import Login from './pages/Login';
 import AuthenticatedApp from './AuthenticatedApp';
 import { ToastProvider } from './components/Toast';
@@ -38,8 +39,9 @@ export default function App() {
   if (!me) {
     return (
       <Routes>
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     );
   }
