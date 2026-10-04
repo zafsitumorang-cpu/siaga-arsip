@@ -14,6 +14,7 @@ import {
 } from 'recharts';
 import { api } from '../lib/api';
 import { StatCard } from '../components/StatCard';
+import { FolderOpen, FileCheck2, Cloud } from 'lucide-react';
 
 interface Statistik {
   total: number;
@@ -66,10 +67,10 @@ export default function Laporan() {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        <StatCard label="Total Arsip" value={statistik.total} />
-        <StatCard label="Terverifikasi" value={`${statistik.terverifikasi} (${persenVerifikasi}%)`} />
-        <StatCard label="Menunggu Verifikasi" value={statistik.total - statistik.terverifikasi} />
-        <StatCard label="Arsip Digital" value={`${statistik.digital} (${persenDigital}%)`} />
+        <StatCard tone="red" icon={FolderOpen} label="Total Arsip" value={statistik.total} />
+        <StatCard tone="green" icon={FileCheck2} label="Terverifikasi" value={`${statistik.terverifikasi} (${persenVerifikasi}%)`} />
+        <StatCard tone="blue" icon={FolderOpen} label="Menunggu Verifikasi" value={statistik.total - statistik.terverifikasi} />
+        <StatCard tone="purple" icon={Cloud} label="Arsip Digital" value={`${statistik.digital} (${persenDigital}%)`} />
       </div>
 
       <div className="grid grid-cols-2 gap-4">
