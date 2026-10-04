@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api, ApiError } from '../lib/api';
 import { StatusBadge } from '../components/StatCard';
+import { useToast } from '../components/Toast';
 
 interface ArsipDetail {
   id: number;
@@ -17,6 +18,7 @@ interface ArsipDetail {
 
 export default function DetailArsip() {
   const { id } = useParams();
+  const toast = useToast();
   const [arsip, setArsip] = useState<ArsipDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [verifying, setVerifying] = useState(false);
@@ -38,8 +40,10 @@ export default function DetailArsip() {
     try {
       await api.patch(`/api/arsip/${id}/verifikasi`);
       load();
+      toast('success', 'Arsip berhasil diverifikasi.');
     } catch {
       setError('Gagal memverifikasi arsip');
+      toast('error', 'Gagal memverifikasi arsip.');
     } finally {
       setVerifying(false);
     }

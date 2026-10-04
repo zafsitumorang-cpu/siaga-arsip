@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 import {
   ArrowRight,
   BarChart3,
@@ -58,6 +59,7 @@ const quickActions = [
 export default function Beranda() {
   const [statistik, setStatistik] = useState<Statistik | null>(null);
   const [terbaru, setTerbaru] = useState<ArsipItem[]>([]);
+  const [animateTable] = useAutoAnimate();
 
   useEffect(() => {
     api.get('/api/statistik').then((d) => setStatistik(d as Statistik));
@@ -73,7 +75,7 @@ export default function Beranda() {
   return (
     <div className="space-y-6">
       {/* Hero banner */}
-      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-sky-100 via-sky-50 to-white p-8 shadow-sm">
+      <section className="relative animate-fade-up overflow-hidden rounded-2xl bg-gradient-to-r from-sky-100 via-sky-50 to-white p-8 shadow-sm">
         <div className="relative z-10 max-w-2xl">
           <h1 className="text-2xl font-extrabold text-slate-800">
             Selamat Datang di{' '}
@@ -101,11 +103,22 @@ export default function Beranda() {
       </section>
 
       {/* Stat cards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard tone="red" icon={FolderOpen} label="Total Arsip" value={formatNumber(statistik.total)} />
-        <StatCard tone="blue" icon={FolderOpen} label="Arsip Aktif" value={formatNumber(statistik.aktif)} />
-        <StatCard tone="green" icon={FileCheck2} label="Terverifikasi" value={formatNumber(statistik.terverifikasi)} />
-        <StatCard tone="purple" icon={Cloud} label="Arsip Digital" value={formatNumber(statistik.digital)} />
+      <div
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+        style={{ animationDelay: '60ms' }}
+      >
+        <div className="animate-fade-up" style={{ animationDelay: '80ms' }}>
+          <StatCard tone="red" icon={FolderOpen} label="Total Arsip" value={formatNumber(statistik.total)} />
+        </div>
+        <div className="animate-fade-up" style={{ animationDelay: '160ms' }}>
+          <StatCard tone="blue" icon={FolderOpen} label="Arsip Aktif" value={formatNumber(statistik.aktif)} />
+        </div>
+        <div className="animate-fade-up" style={{ animationDelay: '240ms' }}>
+          <StatCard tone="green" icon={FileCheck2} label="Terverifikasi" value={formatNumber(statistik.terverifikasi)} />
+        </div>
+        <div className="animate-fade-up" style={{ animationDelay: '320ms' }}>
+          <StatCard tone="purple" icon={Cloud} label="Arsip Digital" value={formatNumber(statistik.digital)} />
+        </div>
       </div>
 
       {/* Arsip per Subbagian */}
@@ -118,7 +131,7 @@ export default function Beranda() {
             return (
               <div
                 key={s.id}
-                className="relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="hover-lift relative flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
               >
                 <Icon
                   className="pointer-events-none absolute -bottom-4 -right-4 h-24 w-24 opacity-10"
@@ -173,7 +186,7 @@ export default function Beranda() {
                   <th className="pb-2 font-medium">Status</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody ref={animateTable}>
                 {terbaru.map((a) => (
                   <tr key={a.id} className="border-t border-slate-100">
                     <td className="py-2.5">

@@ -1,9 +1,11 @@
 import { FormEvent, useState } from 'react';
 import { api, ApiError } from '../lib/api';
+import { useToast } from '../components/Toast';
 
 const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
 
 export default function UploadArsip() {
+  const toast = useToast();
   const [judul, setJudul] = useState('');
   const [nomor, setNomor] = useState('');
   const [subbagianId, setSubbagianId] = useState('');
@@ -36,6 +38,7 @@ export default function UploadArsip() {
     try {
       await api.postForm('/api/arsip', form);
       setMessage({ type: 'ok', text: 'Arsip berhasil diunggah' });
+      toast('success', 'Arsip berhasil diunggah.');
       setJudul('');
       setNomor('');
       setSubbagianId('');
@@ -49,6 +52,7 @@ export default function UploadArsip() {
           ? String((err.body as { message: unknown }).message)
           : 'Gagal mengunggah arsip';
       setMessage({ type: 'err', text });
+      toast('error', text);
     } finally {
       setSubmitting(false);
     }

@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { api, ApiError } from './lib/api';
 import Login from './pages/Login';
 import AuthenticatedApp from './AuthenticatedApp';
+import { ToastProvider } from './components/Toast';
 
 interface Me {
   username: string;
@@ -43,5 +44,9 @@ export default function App() {
     );
   }
 
-  return <AuthenticatedApp me={me} />;
+  return (
+    <ToastProvider>
+      <AuthenticatedApp me={me} />
+    </ToastProvider>
+  );
 }
