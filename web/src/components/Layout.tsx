@@ -1,10 +1,11 @@
 import { NavLink, Outlet } from 'react-router-dom';
-import { Archive, FileUp, LayoutDashboard, LogOut } from 'lucide-react';
+import { Archive, BarChart3, FileUp, LayoutDashboard, LogOut } from 'lucide-react';
 
 const menu = [
   { to: '/', label: 'Beranda', icon: LayoutDashboard },
   { to: '/arsip', label: 'Arsip', icon: Archive },
   { to: '/upload', label: 'Upload', icon: FileUp },
+  { to: '/laporan', label: 'Laporan', icon: BarChart3 },
 ];
 
 export default function Layout({ username }: { username: string }) {
@@ -28,10 +29,6 @@ export default function Layout({ username }: { username: string }) {
               {label}
             </NavLink>
           ))}
-          <div className="flex items-center gap-3 rounded px-3 py-2 text-sm text-slate-500">
-            <LayoutDashboard size={16} />
-            Laporan (segera)
-          </div>
         </nav>
         <button
           onClick={async () => {
