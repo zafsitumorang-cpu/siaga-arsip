@@ -1,0 +1,7 @@
+{
+  "name": "siaga-arsip",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel -r dev"
+  }
+}
