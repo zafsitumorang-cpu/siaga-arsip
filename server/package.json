@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build": "nest build",
+    "start": "node dist/src/main.js",
     "start:dev": "nest start --watch",
     "test": "jest",
     "test:e2e": "jest --config test/jest-e2e.json"
