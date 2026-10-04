@@ -1,7 +1,10 @@
 {
   "name": "siaga-arsip",
   "private": true,
+  "main": "server/dist/src/main.js",
   "scripts": {
-    "dev": "pnpm --parallel -r dev"
+    "dev": "pnpm --parallel -r dev",
+    "start": "pnpm --filter server start",
+    "build": "pnpm -r build"
   }
 }
