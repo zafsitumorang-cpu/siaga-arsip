@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StatusArsip {
+  MENUNGGU
+  TERVERIFIKASI
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+}
+
+model Subbagian {
+  id    Int    @id @default(autoincrement())
+  nama  String @unique
+  arsip Arsip[]
+}
+
+model Arsip {
+  id             Int         @id @default(autoincrement())
+  nomor          String?
+  judul          String
+  subbagianId    Int
+  subbagian      Subbagian   @relation(fields: [subbagianId], references: [id])
+  tanggalDokumen DateTime?
+  status         StatusArsip @default(MENUNGGU)
+  isDigital      Boolean     @default(false)
+  fileNama       String?
+  filePath       String?
+  createdAt      DateTime    @default(now())
+
+  @@index([status])
+  @@index([subbagianId])
+}
