@@ -2,15 +2,11 @@ import { useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { api, ApiError } from './lib/api';
 import Login from './pages/Login';
-import Layout from './components/Layout';
+import AuthenticatedApp from './AuthenticatedApp';
 
 interface Me {
   username: string;
   role: string;
-}
-
-function BerandaPlaceholder() {
-  return <h1 className="text-xl font-bold text-slate-800">Beranda</h1>;
 }
 
 export default function App() {
@@ -47,12 +43,5 @@ export default function App() {
     );
   }
 
-  return (
-    <Routes>
-      <Route path="/login" element={<Navigate to="/" replace />} />
-      <Route element={<Layout username={me.username} />}>
-        <Route path="/" element={<BerandaPlaceholder />} />
-      </Route>
-    </Routes>
-  );
+  return <AuthenticatedApp me={me} />;
 }
