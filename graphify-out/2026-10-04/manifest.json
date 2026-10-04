@@ -210,10 +210,10 @@
     "semantic_hash": "28fa240d195fce3c7fbdb2aa76c50080"
   },
   "web/package.json": {
-    "mtime": 1791121137.723741,
-    "seen": 1791121459.5550313,
-    "ast_hash": "0ec171ca25cbddfb7ddd7aa6f0d03f3c",
-    "semantic_hash": ""
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.059893,
+    "ast_hash": "6685ec1f6eb02da216d32cda55c768fd",
+    "semantic_hash": "6685ec1f6eb02da216d32cda55c768fd"
   },
   "web/postcss.config.js": {
     "mtime": 1791120315.0491219,
@@ -228,16 +228,16 @@
     "semantic_hash": "1eabea62073c31c38704862b2e46eceb"
   },
   "web/src/AuthenticatedApp.tsx": {
-    "mtime": 1791121175.9093058,
-    "seen": 1791121459.555065,
-    "ast_hash": "a76b58f5377b1cf84fc075ad3408505b",
-    "semantic_hash": ""
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598943,
+    "ast_hash": "f791e7eece8e74a172d8e26bc527cc96",
+    "semantic_hash": "f791e7eece8e74a172d8e26bc527cc96"
   },
   "web/src/components/Layout.tsx": {
-    "mtime": 1791121188.1431663,
-    "seen": 1791121459.5550656,
-    "ast_hash": "4f954f010fe740caa02823f1a67ace1b",
-    "semantic_hash": ""
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598948,
+    "ast_hash": "8da4758c4352016dfd6fbc54f05e2122",
+    "semantic_hash": "8da4758c4352016dfd6fbc54f05e2122"
   },
   "web/src/components/StatCard.tsx": {
     "mtime": 1791120315.0491219,
@@ -304,107 +304,5 @@
     "seen": 1791120374.0599,
     "ast_hash": "b33b92fa7e25a8a2d0dbf920f28baea3",
     "semantic_hash": "b33b92fa7e25a8a2d0dbf920f28baea3"
-  },
-  "web/src/pages/Laporan.tsx": {
-    "mtime": 1791121155.702536,
-    "seen": 1791121459.5551739,
-    "ast_hash": "f000adadd794f78aec7e5da538814142",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/SKILL.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552561,
-    "ast_hash": "a93e8ad64464faa2abc9a0d42aeb0cab",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/add-watch.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552568,
-    "ast_hash": "c1f65eb4102ad515149303c7f296b718",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/exports.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552573,
-    "ast_hash": "9da2a2152e60a22f07f05fed5158f287",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/extraction-spec.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.555258,
-    "ast_hash": "bf895ec4d4e40f5f66f7d31c2a9bd4a7",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/github-and-merge.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552585,
-    "ast_hash": "cde13df085e4c492aeb7ba298a996d0d",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/hooks.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552592,
-    "ast_hash": "3f545db6ce646650bb9de588f5512a27",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/query.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552597,
-    "ast_hash": "3c46f8ad006874260614ed8657d02307",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/transcribe.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552604,
-    "ast_hash": "67b6a5fa6c0974e18f60db9f8932fbd8",
-    "semantic_hash": ""
-  },
-  ".hermes/skills/graphify/references/update.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.555261,
-    "ast_hash": "9378bd03d56baaf78bd738ab3848f142",
-    "semantic_hash": ""
-  },
-  "AGENTS.md": {
-    "mtime": 1791120414.0219924,
-    "seen": 1791121459.5552614,
-    "ast_hash": "6a47d64fcc136324ca395065a707ef76",
-    "semantic_hash": ""
-  },
-  "README.md": {
-    "mtime": 1791120315.0461218,
-    "seen": 1791121459.5552616,
-    "ast_hash": "e7d95e3dc8a31980ee3369a4bd924ea9",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/plans/2026-10-04-siaga-arsip-demo.md": {
-    "mtime": 1791115057.6888454,
-    "seen": 1791121459.5552626,
-    "ast_hash": "4377abcdc07454cc114851e9943fc5b2",
-    "semantic_hash": ""
-  },
-  "docs/superpowers/specs/2026-10-04-siaga-arsip-demo-design.md": {
-    "mtime": 1791114903.1465812,
-    "seen": 1791121459.555263,
-    "ast_hash": "a7ce86f1909588d22e8dc375a57c2371",
-    "semantic_hash": ""
-  },
-  "pnpm-workspace.yaml": {
-    "mtime": 1791120315.0471218,
-    "seen": 1791121459.5552635,
-    "ast_hash": "56422aa9319ed9e6b9bf15d67758f46a",
-    "semantic_hash": ""
-  },
-  "web/index.html": {
-    "mtime": 1791120315.0491219,
-    "seen": 1791121459.555264,
-    "ast_hash": "16a7f1d5cad9d263b449909f145ebb5a",
-    "semantic_hash": ""
-  },
-  "docs/beranda-task7.png": {
-    "mtime": 1791120315.0461218,
-    "seen": 1791121459.5552645,
-    "ast_hash": "5f3d57d51d2a5b275aff66cfab0a0d0e",
-    "semantic_hash": ""
   }
 }
