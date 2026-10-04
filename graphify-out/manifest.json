@@ -1,0 +1,308 @@
+{
+  "package.json": {
+    "mtime": 1791120315.0461218,
+    "seen": 1791120374.0598652,
+    "ast_hash": "a01dc0984b788668c041423cbdb5216c",
+    "semantic_hash": "a01dc0984b788668c041423cbdb5216c"
+  },
+  "server/jest.config.json": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598671,
+    "ast_hash": "1b98f35c1376be4733b87192fb9327b8",
+    "semantic_hash": "1b98f35c1376be4733b87192fb9327b8"
+  },
+  "server/nest-cli.json": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.059868,
+    "ast_hash": "83723e4c72225b94471b75f63d1972e9",
+    "semantic_hash": "83723e4c72225b94471b75f63d1972e9"
+  },
+  "server/package.json": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598686,
+    "ast_hash": "644d0bd9e29d0893f8951ca20ae9ae43",
+    "semantic_hash": "644d0bd9e29d0893f8951ca20ae9ae43"
+  },
+  "server/prisma/seed.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598695,
+    "ast_hash": "203427e2949ecc1a30f4fe5cf7177ec6",
+    "semantic_hash": "203427e2949ecc1a30f4fe5cf7177ec6"
+  },
+  "server/src/app.module.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.05987,
+    "ast_hash": "205a9fc81ccefd916f0ab6cf766047bf",
+    "semantic_hash": "205a9fc81ccefd916f0ab6cf766047bf"
+  },
+  "server/src/arsip/arsip-upload.controller.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598707,
+    "ast_hash": "ddbb2213c949458c90a02a065cc961ec",
+    "semantic_hash": "ddbb2213c949458c90a02a065cc961ec"
+  },
+  "server/src/arsip/arsip-upload.service.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598786,
+    "ast_hash": "b204e69c756f04e07678656ae02c1dff",
+    "semantic_hash": "b204e69c756f04e07678656ae02c1dff"
+  },
+  "server/src/arsip/arsip.controller.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.05988,
+    "ast_hash": "05e767aa41f92d80a695104f7743fb8d",
+    "semantic_hash": "05e767aa41f92d80a695104f7743fb8d"
+  },
+  "server/src/arsip/arsip.module.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598807,
+    "ast_hash": "bf9ad489bad7e2e11ebcf9c249913f93",
+    "semantic_hash": "bf9ad489bad7e2e11ebcf9c249913f93"
+  },
+  "server/src/arsip/arsip.service.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598812,
+    "ast_hash": "2dabe8c0f798c5045844d9e080d663a8",
+    "semantic_hash": "2dabe8c0f798c5045844d9e080d663a8"
+  },
+  "server/src/arsip/dto/arsip.dto.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.059882,
+    "ast_hash": "8501ae8c11d2fa9a842bc08aede7be8c",
+    "semantic_hash": "8501ae8c11d2fa9a842bc08aede7be8c"
+  },
+  "server/src/arsip/dto/query-arsip.dto.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598824,
+    "ast_hash": "7024a082026dc2bd113a023709061ce5",
+    "semantic_hash": "7024a082026dc2bd113a023709061ce5"
+  },
+  "server/src/arsip/file-validation.spec.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.059883,
+    "ast_hash": "768d0b182ffdfbb5fbb6581b38ede899",
+    "semantic_hash": "768d0b182ffdfbb5fbb6581b38ede899"
+  },
+  "server/src/arsip/file-validation.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598836,
+    "ast_hash": "7ef602ed573642ab8bd3adaa30d928f0",
+    "semantic_hash": "7ef602ed573642ab8bd3adaa30d928f0"
+  },
+  "server/src/auth/auth.controller.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.059884,
+    "ast_hash": "45d5c7fc597bc585f3b38b0516056119",
+    "semantic_hash": "45d5c7fc597bc585f3b38b0516056119"
+  },
+  "server/src/auth/auth.module.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598843,
+    "ast_hash": "ef771db180f2e4c54e5ea89f3249a251",
+    "semantic_hash": "ef771db180f2e4c54e5ea89f3249a251"
+  },
+  "server/src/auth/auth.service.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598848,
+    "ast_hash": "efe662b469b531b99b75018f0458f717",
+    "semantic_hash": "efe662b469b531b99b75018f0458f717"
+  },
+  "server/src/auth/dto/login.dto.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598853,
+    "ast_hash": "e2912e9367163b6d3d70d66628436bab",
+    "semantic_hash": "e2912e9367163b6d3d70d66628436bab"
+  },
+  "server/src/auth/jwt-auth.guard.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.0598855,
+    "ast_hash": "184c5bd056e5657c27ecdd69e1e40701",
+    "semantic_hash": "184c5bd056e5657c27ecdd69e1e40701"
+  },
+  "server/src/auth/jwt.strategy.ts": {
+    "mtime": 1791120315.048122,
+    "seen": 1791120374.059886,
+    "ast_hash": "dc3bd4fa64213cd57764b930561de959",
+    "semantic_hash": "dc3bd4fa64213cd57764b930561de959"
+  },
+  "server/src/main.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598862,
+    "ast_hash": "298ab61f2ba7c683cc9237f6d98dcda6",
+    "semantic_hash": "298ab61f2ba7c683cc9237f6d98dcda6"
+  },
+  "server/src/prisma/prisma.module.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598872,
+    "ast_hash": "3505a1831c78f0a9475e4ce0f0092410",
+    "semantic_hash": "3505a1831c78f0a9475e4ce0f0092410"
+  },
+  "server/src/prisma/prisma.service.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598876,
+    "ast_hash": "b623a572e711dd26075d313b9999e713",
+    "semantic_hash": "b623a572e711dd26075d313b9999e713"
+  },
+  "server/src/statistik/statistik.controller.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598881,
+    "ast_hash": "5e5fe3b8cd675793400e5b93dcc4b265",
+    "semantic_hash": "5e5fe3b8cd675793400e5b93dcc4b265"
+  },
+  "server/src/statistik/statistik.module.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598886,
+    "ast_hash": "6bf057a328a5c31d987184574e2cd7dc",
+    "semantic_hash": "6bf057a328a5c31d987184574e2cd7dc"
+  },
+  "server/src/statistik/statistik.service.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.059889,
+    "ast_hash": "9c6664b97d1a832b89508fca5b8fcdc8",
+    "semantic_hash": "9c6664b97d1a832b89508fca5b8fcdc8"
+  },
+  "server/test/arsip.e2e-spec.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598893,
+    "ast_hash": "7e21bf02deb4d682de093feabeef9c85",
+    "semantic_hash": "7e21bf02deb4d682de093feabeef9c85"
+  },
+  "server/test/auth.e2e-spec.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.05989,
+    "ast_hash": "74ed9973aa3e7a00763d94ac83840a67",
+    "semantic_hash": "74ed9973aa3e7a00763d94ac83840a67"
+  },
+  "server/test/flow.e2e-spec.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598905,
+    "ast_hash": "f8d0d391a75443dafc71a0ef53acc474",
+    "semantic_hash": "f8d0d391a75443dafc71a0ef53acc474"
+  },
+  "server/test/jest-e2e.json": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.059891,
+    "ast_hash": "9f2f5b0e1da31d7b04e205c944e85e8d",
+    "semantic_hash": "9f2f5b0e1da31d7b04e205c944e85e8d"
+  },
+  "server/test/seed.spec.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598915,
+    "ast_hash": "ff8c0ba097039648a59b5a9bdfe515af",
+    "semantic_hash": "ff8c0ba097039648a59b5a9bdfe515af"
+  },
+  "server/test/statistik.spec.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598917,
+    "ast_hash": "46b6406f632d56ae2173af6263e1f51c",
+    "semantic_hash": "46b6406f632d56ae2173af6263e1f51c"
+  },
+  "server/test/upload-verifikasi.e2e-spec.ts": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598922,
+    "ast_hash": "b7906984545f732c48ed5da5adf198ef",
+    "semantic_hash": "b7906984545f732c48ed5da5adf198ef"
+  },
+  "server/tsconfig.json": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598924,
+    "ast_hash": "28fa240d195fce3c7fbdb2aa76c50080",
+    "semantic_hash": "28fa240d195fce3c7fbdb2aa76c50080"
+  },
+  "web/package.json": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.059893,
+    "ast_hash": "6685ec1f6eb02da216d32cda55c768fd",
+    "semantic_hash": "6685ec1f6eb02da216d32cda55c768fd"
+  },
+  "web/postcss.config.js": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598936,
+    "ast_hash": "c735540bb63936a123bc867d950c9f69",
+    "semantic_hash": "c735540bb63936a123bc867d950c9f69"
+  },
+  "web/src/App.tsx": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598938,
+    "ast_hash": "1eabea62073c31c38704862b2e46eceb",
+    "semantic_hash": "1eabea62073c31c38704862b2e46eceb"
+  },
+  "web/src/AuthenticatedApp.tsx": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598943,
+    "ast_hash": "f791e7eece8e74a172d8e26bc527cc96",
+    "semantic_hash": "f791e7eece8e74a172d8e26bc527cc96"
+  },
+  "web/src/components/Layout.tsx": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598948,
+    "ast_hash": "8da4758c4352016dfd6fbc54f05e2122",
+    "semantic_hash": "8da4758c4352016dfd6fbc54f05e2122"
+  },
+  "web/src/components/StatCard.tsx": {
+    "mtime": 1791120315.0491219,
+    "seen": 1791120374.0598953,
+    "ast_hash": "194c30cf2b750a0657ad89ed233dcdeb",
+    "semantic_hash": "194c30cf2b750a0657ad89ed233dcdeb"
+  },
+  "web/src/lib/api.ts": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.0598955,
+    "ast_hash": "5eb699ca6b02e39e492048138c552b87",
+    "semantic_hash": "5eb699ca6b02e39e492048138c552b87"
+  },
+  "web/src/main.tsx": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.059896,
+    "ast_hash": "e54eec53e1c948678793edc783854f42",
+    "semantic_hash": "e54eec53e1c948678793edc783854f42"
+  },
+  "web/src/pages/Beranda.tsx": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.0598972,
+    "ast_hash": "75f1e302b29ede29434b842b702309dc",
+    "semantic_hash": "75f1e302b29ede29434b842b702309dc"
+  },
+  "web/src/pages/DaftarArsip.tsx": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.0598977,
+    "ast_hash": "bc627ebaef0fb898d3dbe5e79675964f",
+    "semantic_hash": "bc627ebaef0fb898d3dbe5e79675964f"
+  },
+  "web/src/pages/DetailArsip.tsx": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.059898,
+    "ast_hash": "96c599275acfb595d0ce54c8ac82e77f",
+    "semantic_hash": "96c599275acfb595d0ce54c8ac82e77f"
+  },
+  "web/src/pages/Login.tsx": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.0598984,
+    "ast_hash": "4b578ab5da8983473175a2da99637cab",
+    "semantic_hash": "4b578ab5da8983473175a2da99637cab"
+  },
+  "web/src/pages/UploadArsip.tsx": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.0598986,
+    "ast_hash": "1e9a380cb0ef3c45604791d6a648bbc1",
+    "semantic_hash": "1e9a380cb0ef3c45604791d6a648bbc1"
+  },
+  "web/tailwind.config.js": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.059899,
+    "ast_hash": "5e9001435b67fd819c59969c30edf830",
+    "semantic_hash": "5e9001435b67fd819c59969c30edf830"
+  },
+  "web/tsconfig.json": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.0598996,
+    "ast_hash": "439ed1c7ff0bd33ff6328fe52716f70e",
+    "semantic_hash": "439ed1c7ff0bd33ff6328fe52716f70e"
+  },
+  "web/vite.config.ts": {
+    "mtime": 1791120315.0501218,
+    "seen": 1791120374.0599,
+    "ast_hash": "b33b92fa7e25a8a2d0dbf920f28baea3",
+    "semantic_hash": "b33b92fa7e25a8a2d0dbf920f28baea3"
+  }
+}
