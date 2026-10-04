@@ -28,4 +28,11 @@ export class AuthController {
   me(@Req() req: any) {
     return { username: req.user.username, role: req.user.role };
   }
+
+  @Post('logout')
+  @HttpCode(201)
+  logout(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('access_token');
+    return { ok: true };
+  }
 }

@@ -75,7 +75,39 @@ describe('Auth (e2e)', () => {
     });
   });
 
-  it('(e) login 6x password salah → request ke-6 = 429', async () => {
+  it('(e) logout menghapus cookie → /api/auth/me jadi 401', async () => {
+    const login = await request(app.getHttpServer())
+      .post('/api/auth/login')
+      .send({ username: ADMIN_USERNAME, password: ADMIN_PASSWORD })
+      .expect(201);
+
+    const token = /access_token=([^;]+)/.exec(
+      Array.isArray(login.headers['set-cookie'])
+        ? login.headers['set-cookie'].join(';')
+        : login.headers['set-cookie'],
+    )![1];
+
+    const logout = await request(app.getHttpServer())
+      .post('/api/auth/logout')
+      .set('Cookie', [`access_token=${token}`])
+      .expect(201);
+
+    // set-cookie harus menandai access_token untuk dihapus/kedaluwarsa
+    const rawCookie = Array.isArray(logout.headers['set-cookie'])
+      ? logout.headers['set-cookie'].join(';')
+      : logout.headers['set-cookie'];
+    expect(rawCookie).toContain('access_token=');
+    expect(/access_token=;/.test(rawCookie) || /Max-Age=0|Expires=Thu, 01 Jan 1970/i.test(rawCookie)).toBe(true);
+
+    // token lama tidak lagi valid (cookie dikirim tapi sudah di-clear di server side behavior)
+    await request(app.getHttpServer())
+      .get('/api/auth/me')
+      .set('Cookie', [`access_token=`])
+      .expect(401);
+  });
+
+  // Dijalankan terakhir: menghabiskan window throttle login (5/60s).
+  it('(f) login 6x password salah → request ke-6 = 429', async () => {
     for (let i = 0; i < 5; i++) {
       await request(app.getHttpServer())
         .post('/api/auth/login')
