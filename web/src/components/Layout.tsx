@@ -53,7 +53,7 @@ export default function Layout({ username }: { username: string }) {
         <div className="mt-0.5 text-[11px] text-slate-400">Bawaslu Kab. Aceh Timur</div>
       </div>
 
-      <nav className="flex-1 space-y-1 overflow-y-auto px-3">
+      <nav className="scrollbar-none flex-1 space-y-1 overflow-y-auto px-3">
         {menu.map(({ to, label, icon: Icon }) => (
           <NavLink
             key={to}
@@ -118,7 +118,7 @@ export default function Layout({ username }: { username: string }) {
   return (
     <div className="flex h-screen overflow-hidden bg-slate-100">
       {/* Sidebar desktop (>= lg) — dipatok tinggi layar, scroll internal */}
-      <aside className="hidden h-screen w-60 shrink-0 flex-col overflow-y-auto bg-slate-900 text-slate-300 lg:flex">
+      <aside className="scrollbar-none hidden h-screen w-60 shrink-0 flex-col overflow-y-auto bg-slate-900 text-slate-300 lg:flex">
         {sidebarContent}
       </aside>
 
