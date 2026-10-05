@@ -23,4 +23,5 @@ RUN cd server && pnpm build
 
 EXPOSE 3000
 WORKDIR /app/server
-CMD ["node", "dist/src/main.js"]
+# Terapkan migrasi Prisma sebelum start (skema berjalan otomatis tiap deploy).
+CMD ["sh", "-c", "npx prisma migrate deploy && node dist/src/main.js"]

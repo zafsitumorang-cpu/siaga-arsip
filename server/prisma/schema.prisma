@@ -13,16 +13,19 @@ enum StatusArsip {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  username     String   @unique
+  id           Int            @id @default(autoincrement())
+  username     String         @unique
   passwordHash String
-  role         String   @default("ADMIN")
-  createdAt    DateTime @default(now())
+  role         String         @default("ADMIN")
+  createdAt    DateTime       @default(now())
+  arsipDibuat  Arsip[]        @relation("PembuatArsip")
+  arsipDiverif Arsip[]        @relation("VerifikatorArsip")
+  riwayat      RiwayatArsip[]
 }
 
 model Subbagian {
-  id    Int    @id @default(autoincrement())
-  nama  String @unique
+  id    Int     @id @default(autoincrement())
+  nama  String  @unique
   arsip Arsip[]
 }
 
@@ -38,7 +41,28 @@ model Arsip {
   fileNama       String?
   filePath       String?
   createdAt      DateTime    @default(now())
+  createdById    Int?
+  createdBy      User?       @relation("PembuatArsip", fields: [createdById], references: [id])
+  verifiedById   Int?
+  verifiedBy     User?       @relation("VerifikatorArsip", fields: [verifiedById], references: [id])
+  verifiedAt     DateTime?
+  riwayat        RiwayatArsip[]
 
   @@index([status])
   @@index([subbagianId])
+}
+
+/// Jejak audit: siapa melakukan apa, kapan. Nilai jual utama sistem kearsipan.
+model RiwayatArsip {
+  id         Int      @id @default(autoincrement())
+  arsipId    Int
+  arsip      Arsip    @relation(fields: [arsipId], references: [id], onDelete: Cascade)
+  aksi       String
+  keterangan String?
+  userId     Int?
+  user       User?    @relation(fields: [userId], references: [id])
+  username   String?
+  createdAt  DateTime @default(now())
+
+  @@index([arsipId])
 }

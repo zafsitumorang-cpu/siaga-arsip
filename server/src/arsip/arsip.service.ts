@@ -14,6 +14,8 @@ export interface ArsipDto {
   isDigital: boolean;
   fileNama: string | null;
   createdAt: Date;
+  verifiedAt: Date | null;
+  verifiedByUsername: string | null;
 }
 
 type ArsipWithSubbagian = Prisma.ArsipGetPayload<{ include: { subbagian: true } }>;
@@ -30,6 +32,8 @@ function toDto(record: ArsipWithSubbagian): ArsipDto {
     isDigital: record.isDigital,
     fileNama: record.fileNama,
     createdAt: record.createdAt,
+    verifiedAt: (record as any).verifiedAt ?? null,
+    verifiedByUsername: (record as any).verifiedBy?.username ?? null,
   };
 }
 
@@ -81,7 +85,7 @@ export class ArsipService {
   async findOne(id: number): Promise<ArsipDto> {
     const arsip = await this.prisma.arsip.findUnique({
       where: { id },
-      include: { subbagian: true },
+      include: { subbagian: true, verifiedBy: { select: { username: true } } },
     });
     if (!arsip) {
       throw new NotFoundException(`Arsip dengan id ${id} tidak ditemukan`);

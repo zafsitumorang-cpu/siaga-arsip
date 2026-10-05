@@ -9,6 +9,7 @@ import {
   Patch,
   PayloadTooLargeException,
   Post,
+  Req,
   Res,
   UploadedFile,
   UseGuards,
@@ -69,6 +70,7 @@ export class ArsipUploadController {
       subbagianId?: string;
       tanggalDokumen?: string;
     },
+    @Req() req: { user?: { userId?: number; username?: string } },
   ) {
     if (!body.judul || !body.subbagianId) {
       throw new BadRequestException('judul dan subbagianId wajib diisi');
@@ -85,19 +87,33 @@ export class ArsipUploadController {
     if (!result.ok) {
       throw new BadRequestException(result.reason);
     }
-    return this.arsipUploadService.create({
-      judul: body.judul,
-      nomor: body.nomor,
-      subbagianId,
-      tanggalDokumen: body.tanggalDokumen,
-      fileNama: file.originalname,
-      filePath: file.filename,
-    });
+    return this.arsipUploadService.create(
+      {
+        judul: body.judul,
+        nomor: body.nomor,
+        subbagianId,
+        tanggalDokumen: body.tanggalDokumen,
+        fileNama: file.originalname,
+        filePath: file.filename,
+      },
+      { userId: req.user?.userId, username: req.user?.username },
+    );
   }
 
   @Patch(':id/verifikasi')
-  verifikasi(@Param('id', ParseIntPipe) id: number) {
-    return this.arsipUploadService.verifikasi(id);
+  verifikasi(
+    @Param('id', ParseIntPipe) id: number,
+    @Req() req: { user?: { userId?: number; username?: string } },
+  ) {
+    return this.arsipUploadService.verifikasi(id, {
+      userId: req.user?.userId,
+      username: req.user?.username,
+    });
+  }
+
+  @Get(':id/riwayat')
+  riwayat(@Param('id', ParseIntPipe) id: number) {
+    return this.arsipUploadService.riwayat(id);
   }
 
   @Get(':id/file')

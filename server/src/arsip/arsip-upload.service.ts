@@ -9,7 +9,7 @@ import { mkdirSync } from 'fs';
 import { extname, join } from 'path';
 import { StatusArsip } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import { ArsipDto, toArsipDto } from './dto/arsip.dto';
+import { ArsipDto, RiwayatDto, toArsipDto } from './dto/arsip.dto';
 
 const ALLOWED_MIMETYPES = ['application/pdf', 'image/jpeg', 'image/png'];
 const ALLOWED_EXTENSIONS = ['.pdf', '.jpg', '.jpeg', '.png'];
@@ -62,7 +62,7 @@ export class CreateArsipDto {
 export class ArsipUploadService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(dto: CreateArsipDto): Promise<ArsipDto> {
+  async create(dto: CreateArsipDto, actor?: { userId?: number; username?: string }): Promise<ArsipDto> {
     try {
       const record = await this.prisma.arsip.create({
         data: {
@@ -74,6 +74,15 @@ export class ArsipUploadService {
           isDigital: Boolean(dto.fileNama),
           fileNama: dto.fileNama ?? null,
           filePath: dto.filePath ?? null,
+          createdById: actor?.userId ?? null,
+          riwayat: {
+            create: {
+              aksi: 'DIBUAT',
+              keterangan: dto.fileNama ? `Diunggah: ${dto.fileNama}` : 'Dibuat tanpa file',
+              userId: actor?.userId ?? null,
+              username: actor?.username ?? null,
+            },
+          },
         },
         include: { subbagian: true },
       });
@@ -88,20 +97,57 @@ export class ArsipUploadService {
     }
   }
 
-  async verifikasi(id: number): Promise<ArsipDto> {
+  async verifikasi(
+    id: number,
+    actor?: { userId?: number; username?: string },
+  ): Promise<ArsipDto> {
     // Idempotent: updateMany dengan filter status MENUNGGU aman diulang.
-    await this.prisma.arsip.updateMany({
+    const updated = await this.prisma.arsip.updateMany({
       where: { id, status: StatusArsip.MENUNGGU },
-      data: { status: StatusArsip.TERVERIFIKASI },
+      data: {
+        status: StatusArsip.TERVERIFIKASI,
+        verifiedAt: new Date(),
+        verifiedById: actor?.userId ?? null,
+      },
     });
     const record = await this.prisma.arsip.findUnique({
       where: { id },
-      include: { subbagian: true },
+      include: { subbagian: true, verifiedBy: { select: { username: true } } },
     });
     if (!record) {
       throw new NotFoundException(`Arsip dengan id ${id} tidak ditemukan`);
     }
+    // Catat jejak audit HANYA jika status benar-benar berubah (bukan klik ulang).
+    if (updated.count > 0) {
+      await this.prisma.riwayatArsip.create({
+        data: {
+          arsipId: id,
+          aksi: 'DIVERIFIKASI',
+          keterangan: `Diverifikasi oleh ${actor?.username ?? 'sistem'}`,
+          userId: actor?.userId ?? null,
+          username: actor?.username ?? null,
+        },
+      });
+    }
     return toArsipDto(record);
+  }
+
+  async riwayat(id: number): Promise<RiwayatDto[]> {
+    const arsip = await this.prisma.arsip.findUnique({ where: { id }, select: { id: true } });
+    if (!arsip) {
+      throw new NotFoundException(`Arsip dengan id ${id} tidak ditemukan`);
+    }
+    const rows = await this.prisma.riwayatArsip.findMany({
+      where: { arsipId: id },
+      orderBy: { createdAt: 'asc' },
+    });
+    return rows.map((r) => ({
+      id: r.id,
+      aksi: r.aksi,
+      keterangan: r.keterangan,
+      username: r.username,
+      createdAt: r.createdAt,
+    }));
   }
 
   async getFilePath(id: number): Promise<{ absolutePath: string; mimetype: string } | null> {

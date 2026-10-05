@@ -15,12 +15,33 @@ interface ArsipDetail {
   isDigital: boolean;
   fileNama: string | null;
   createdAt: string;
+  verifiedAt: string | null;
+  verifiedByUsername: string | null;
+}
+
+interface RiwayatItem {
+  id: number;
+  aksi: string;
+  keterangan: string | null;
+  username: string | null;
+  createdAt: string;
+}
+
+function formatWaktu(iso: string): string {
+  return new Date(iso).toLocaleString('id-ID', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 }
 
 export default function DetailArsip() {
   const { id } = useParams();
   const toast = useToast();
   const [arsip, setArsip] = useState<ArsipDetail | null>(null);
+  const [riwayat, setRiwayat] = useState<RiwayatItem[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [verifying, setVerifying] = useState(false);
 
@@ -32,6 +53,10 @@ export default function DetailArsip() {
         if (err instanceof ApiError && err.status === 404) setError('Arsip tidak ditemukan');
         else setError('Gagal memuat arsip');
       });
+    api
+      .get(`/api/arsip/${id}/riwayat`)
+      .then((d) => setRiwayat(d as RiwayatItem[]))
+      .catch(() => undefined); // riwayat gagal tidak boleh merusak halaman detail
   }, [id]);
 
   useEffect(load, [load]);
@@ -133,6 +158,44 @@ export default function DetailArsip() {
           >
             {verifying ? 'Memverifikasi…' : 'Verifikasi'}
           </button>
+        )}
+
+        {arsip.status === 'TERVERIFIKASI' && arsip.verifiedAt && (
+          <div className="mt-5 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800">
+            Diverifikasi oleh{' '}
+            <span className="font-semibold">{arsip.verifiedByUsername ?? 'sistem'}</span> pada{' '}
+            {formatWaktu(arsip.verifiedAt)}
+          </div>
+        )}
+      </div>
+
+      <div className="rounded-lg bg-white p-6 shadow-sm">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-500">
+          Riwayat Arsip
+        </h2>
+        {riwayat.length === 0 ? (
+          <p className="text-sm italic text-slate-400">
+            Belum ada riwayat tercatat (arsip sebelum fitur jejak audit).
+          </p>
+        ) : (
+          <ol className="relative space-y-4 border-l border-slate-200 pl-5">
+            {riwayat.map((r) => (
+              <li key={r.id} className="relative">
+                <span
+                  className={`absolute -left-[26px] top-1 h-3 w-3 rounded-full border-2 border-white ${
+                    r.aksi === 'DIVERIFIKASI' ? 'bg-green-500' : 'bg-blue-500'
+                  }`}
+                />
+                <p className="text-sm font-medium text-slate-800">
+                  {r.aksi === 'DIBUAT' ? 'Arsip dibuat / diunggah' : 'Diverifikasi'}
+                  {r.username && (
+                    <span className="font-normal text-slate-500"> — {r.username}</span>
+                  )}
+                </p>
+                <p className="text-xs text-slate-400">{formatWaktu(r.createdAt)}</p>
+              </li>
+            ))}
+          </ol>
         )}
       </div>
     </div>

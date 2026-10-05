@@ -9,6 +9,8 @@ export interface ArsipDto {
   isDigital: boolean;
   fileNama: string | null;
   createdAt: Date;
+  verifiedAt: Date | null;
+  verifiedByUsername: string | null;
 }
 
 interface ArsipWithSubbagian {
@@ -22,6 +24,8 @@ interface ArsipWithSubbagian {
   isDigital: boolean;
   fileNama: string | null;
   createdAt: Date;
+  verifiedAt?: Date | null;
+  verifiedBy?: { username: string } | null;
 }
 
 export function toArsipDto(record: ArsipWithSubbagian): ArsipDto {
@@ -36,5 +40,15 @@ export function toArsipDto(record: ArsipWithSubbagian): ArsipDto {
     isDigital: record.isDigital,
     fileNama: record.fileNama,
     createdAt: record.createdAt,
+    verifiedAt: record.verifiedAt ?? null,
+    verifiedByUsername: record.verifiedBy?.username ?? null,
   };
+}
+
+export interface RiwayatDto {
+  id: number;
+  aksi: string;
+  keterangan: string | null;
+  username: string | null;
+  createdAt: Date;
 }
