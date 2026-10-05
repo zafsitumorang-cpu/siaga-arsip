@@ -116,9 +116,9 @@ export default function Layout({ username }: { username: string }) {
   );
 
   return (
-    <div className="flex min-h-screen bg-slate-100">
-      {/* Sidebar desktop (>= lg) */}
-      <aside className="hidden w-60 shrink-0 flex-col bg-slate-900 text-slate-300 lg:flex">
+    <div className="flex h-screen overflow-hidden bg-slate-100">
+      {/* Sidebar desktop (>= lg) — dipatok tinggi layar, scroll internal */}
+      <aside className="hidden h-screen w-60 shrink-0 flex-col overflow-y-auto bg-slate-900 text-slate-300 lg:flex">
         {sidebarContent}
       </aside>
 
@@ -230,7 +230,7 @@ export default function Layout({ username }: { username: string }) {
           </div>
         </header>
 
-        <main className="flex-1 p-4 sm:p-6">
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
           <Outlet />
         </main>
 
