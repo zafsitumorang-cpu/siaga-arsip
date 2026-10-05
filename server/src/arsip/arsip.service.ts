@@ -51,6 +51,7 @@ export class ArsipService {
     const pageSize = query.pageSize ?? 10;
 
     const where: Prisma.ArsipWhereInput = {
+      deletedAt: null,
       ...(query.status ? { status: query.status } : {}),
       ...(query.subbagianId ? { subbagianId: query.subbagianId } : {}),
       ...(query.search
@@ -83,8 +84,8 @@ export class ArsipService {
   }
 
   async findOne(id: number): Promise<ArsipDto> {
-    const arsip = await this.prisma.arsip.findUnique({
-      where: { id },
+    const arsip = await this.prisma.arsip.findFirst({
+      where: { id, deletedAt: null },
       include: { subbagian: true, verifiedBy: { select: { username: true } } },
     });
     if (!arsip) {

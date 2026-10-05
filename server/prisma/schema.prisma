@@ -46,10 +46,13 @@ model Arsip {
   verifiedById   Int?
   verifiedBy     User?       @relation("VerifikatorArsip", fields: [verifiedById], references: [id])
   verifiedAt     DateTime?
+  /// Soft delete: arsip disembunyikan dari daftar, tetap tersimpan untuk audit.
+  deletedAt      DateTime?
   riwayat        RiwayatArsip[]
 
   @@index([status])
   @@index([subbagianId])
+  @@index([deletedAt])
 }
 
 /// Jejak audit: siapa melakukan apa, kapan. Nilai jual utama sistem kearsipan.

@@ -221,7 +221,28 @@ export default function Beranda() {
                     </td>
                   </tr>
                 ))}
-                {terbaru.length === 0 && (
+                {terbaru.length === 0 && statistik.total === 0 && (
+                  <tr>
+                    <td colSpan={4} className="py-6 text-center">
+                      <div className="mx-auto max-w-md">
+                        <p className="mb-1 font-semibold text-slate-700">
+                          👋 Selamat datang! Mari mulai dari sini.
+                        </p>
+                        <p className="mb-3 text-sm text-slate-500">
+                          Belum ada arsip tercatat. Langkah pertama: unggah arsip pertama Anda
+                          — pilih subbagian, isi judul & nomor, lalu unggah file PDF/JPG/PNG.
+                        </p>
+                        <Link
+                          to="/upload"
+                          className="inline-flex items-center gap-1 rounded-lg bg-sky-600 px-4 py-2 text-sm font-medium text-white hover:bg-sky-700"
+                        >
+                          <FileUp size={16} /> Upload Arsip Pertama
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+                {terbaru.length === 0 && statistik.total > 0 && (
                   <tr>
                     <td colSpan={4} className="py-4 text-center text-slate-400">
                       Belum ada arsip

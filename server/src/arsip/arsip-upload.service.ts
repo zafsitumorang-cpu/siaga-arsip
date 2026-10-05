@@ -150,6 +150,56 @@ export class ArsipUploadService {
     }));
   }
 
+  /** Soft delete: sembunyikan arsip, data tetap tersimpan untuk audit. */
+  async softDelete(
+    id: number,
+    actor?: { userId?: number; username?: string },
+  ): Promise<{ id: number; deleted: boolean }> {
+    const updated = await this.prisma.arsip.updateMany({
+      where: { id, deletedAt: null },
+      data: { deletedAt: new Date() },
+    });
+    if (updated.count === 0) {
+      throw new NotFoundException(`Arsip dengan id ${id} tidak ditemukan`);
+    }
+    await this.prisma.riwayatArsip.create({
+      data: {
+        arsipId: id,
+        aksi: 'DIHAPUS',
+        keterangan: `Dihapus (soft delete) oleh ${actor?.username ?? 'sistem'}`,
+        userId: actor?.userId ?? null,
+        username: actor?.username ?? null,
+      },
+    });
+    return { id, deleted: true };
+  }
+
+  /** Pulihkan arsip yang sudah di-soft-delete. */
+  async restore(
+    id: number,
+    actor?: { userId?: number; username?: string },
+  ): Promise<{ id: number; restored: boolean }> {
+    const updated = await this.prisma.arsip.updateMany({
+      where: { id, deletedAt: { not: null } },
+      data: { deletedAt: null },
+    });
+    if (updated.count === 0) {
+      throw new NotFoundException(
+        `Arsip dengan id ${id} tidak ditemukan atau tidak sedang dihapus`,
+      );
+    }
+    await this.prisma.riwayatArsip.create({
+      data: {
+        arsipId: id,
+        aksi: 'DIPULIHKAN',
+        keterangan: `Dipulihkan oleh ${actor?.username ?? 'sistem'}`,
+        userId: actor?.userId ?? null,
+        username: actor?.username ?? null,
+      },
+    });
+    return { id, restored: true };
+  }
+
   async getFilePath(id: number): Promise<{ absolutePath: string; mimetype: string } | null> {
     const record = await this.prisma.arsip.findUnique({
       where: { id },

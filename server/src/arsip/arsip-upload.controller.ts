@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Controller,
   Body,
+  Delete,
   Get,
   Inject,
   Param,
@@ -114,6 +115,28 @@ export class ArsipUploadController {
   @Get(':id/riwayat')
   riwayat(@Param('id', ParseIntPipe) id: number) {
     return this.arsipUploadService.riwayat(id);
+  }
+
+  @Delete(':id')
+  hapus(
+    @Param('id', ParseIntPipe) id: number,
+    @Req() req: { user?: { userId?: number; username?: string } },
+  ) {
+    return this.arsipUploadService.softDelete(id, {
+      userId: req.user?.userId,
+      username: req.user?.username,
+    });
+  }
+
+  @Patch(':id/pulihkan')
+  pulihkan(
+    @Param('id', ParseIntPipe) id: number,
+    @Req() req: { user?: { userId?: number; username?: string } },
+  ) {
+    return this.arsipUploadService.restore(id, {
+      userId: req.user?.userId,
+      username: req.user?.username,
+    });
   }
 
   @Get(':id/file')

@@ -14,12 +14,14 @@ export class StatistikService {
   constructor(private readonly prisma: PrismaService) {}
 
   async get(): Promise<StatistikDto> {
+    const aktifWhere = { deletedAt: null } as const;
     const [total, terverifikasi, digital, perSubbagian] = await this.prisma.$transaction([
-      this.prisma.arsip.count(),
-      this.prisma.arsip.count({ where: { status: 'TERVERIFIKASI' } }),
-      this.prisma.arsip.count({ where: { isDigital: true } }),
+      this.prisma.arsip.count({ where: aktifWhere }),
+      this.prisma.arsip.count({ where: { ...aktifWhere, status: 'TERVERIFIKASI' } }),
+      this.prisma.arsip.count({ where: { ...aktifWhere, isDigital: true } }),
       this.prisma.arsip.groupBy({
         by: ['subbagianId'],
+        where: aktifWhere,
         _count: { _all: true },
         orderBy: { subbagianId: 'asc' } as never,
       }),
