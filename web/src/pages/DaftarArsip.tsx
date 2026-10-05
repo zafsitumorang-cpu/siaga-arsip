@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { api } from '../lib/api';
 import { Pagination, StatusBadge } from '../components/StatCard';
+import { TableSkeletonRows } from '../components/Loading';
 
 interface ArsipItem {
   id: number;
@@ -28,6 +29,7 @@ interface ListResponse {
 export default function DaftarArsip() {
   const [params, setParams] = useSearchParams();
   const [items, setItems] = useState<ArsipItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [total, setTotal] = useState(0);
   const [subbagian, setSubbagian] = useState<Subbagian[]>([]);
   const [searchInput, setSearchInput] = useState(params.get('search') ?? '');
@@ -64,12 +66,14 @@ export default function DaftarArsip() {
     if (subbagianId) qs.set('subbagianId', subbagianId);
     if (status) qs.set('status', status);
 
+    setLoading(true);
     const t = setTimeout(() => {
       api.get(`/api/arsip?${qs.toString()}`).then((d) => {
         const res = d as ListResponse;
         setItems(res.items);
         setTotal(res.total);
-      });
+        setLoading(false);
+      }).catch(() => setLoading(false));
     }, 300);
     return () => clearTimeout(t);
   }, [page, params, subbagianId, status]);
@@ -131,35 +135,41 @@ export default function DaftarArsip() {
             </tr>
           </thead>
           <tbody>
-            {items.map((a) => (
-              <tr key={a.id} className="border-t">
-                <td className="py-2">
-                  <Link to={`/arsip/${a.id}`} className="text-blue-600 hover:underline">
-                    {a.judul}
-                  </Link>
-                </td>
-                <td className="py-2">{a.nomor ?? '—'}</td>
-                <td className="py-2">{a.subbagianNama}</td>
-                <td className="py-2">
-                  {a.tanggalDokumen
-                    ? new Date(a.tanggalDokumen).toLocaleDateString('id-ID', {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric',
-                      })
-                    : '—'}
-                </td>
-                <td className="py-2">
-                  <StatusBadge status={a.status} />
-                </td>
-              </tr>
-            ))}
-            {items.length === 0 && (
-              <tr>
-                <td colSpan={5} className="py-4 text-center text-slate-400">
-                  Tidak ada arsip
-                </td>
-              </tr>
+            {loading ? (
+              <TableSkeletonRows rows={10} cols={5} />
+            ) : (
+              <>
+                {items.map((a) => (
+                  <tr key={a.id} className="border-t">
+                    <td className="py-2">
+                      <Link to={`/arsip/${a.id}`} className="text-blue-600 hover:underline">
+                        {a.judul}
+                      </Link>
+                    </td>
+                    <td className="py-2">{a.nomor ?? '—'}</td>
+                    <td className="py-2">{a.subbagianNama}</td>
+                    <td className="py-2">
+                      {a.tanggalDokumen
+                        ? new Date(a.tanggalDokumen).toLocaleDateString('id-ID', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          })
+                        : '—'}
+                    </td>
+                    <td className="py-2">
+                      <StatusBadge status={a.status} />
+                    </td>
+                  </tr>
+                ))}
+                {items.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="py-4 text-center text-slate-400">
+                      Tidak ada arsip
+                    </td>
+                  </tr>
+                )}
+              </>
             )}
           </tbody>
         </table>
