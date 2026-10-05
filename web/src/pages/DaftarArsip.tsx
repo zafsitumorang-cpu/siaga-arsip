@@ -145,16 +145,24 @@ export default function DaftarArsip() {
                         {a.judul}
                       </Link>
                     </td>
-                    <td className="py-2">{a.nomor ?? '—'}</td>
+                    <td className="py-2">
+                      {a.nomor ? (
+                        <span className="font-mono text-sm">{a.nomor}</span>
+                      ) : (
+                        <span className="text-xs italic text-slate-400">belum ada nomor</span>
+                      )}
+                    </td>
                     <td className="py-2">{a.subbagianNama}</td>
                     <td className="py-2">
-                      {a.tanggalDokumen
-                        ? new Date(a.tanggalDokumen).toLocaleDateString('id-ID', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric',
-                          })
-                        : '—'}
+                      {a.tanggalDokumen ? (
+                        new Date(a.tanggalDokumen).toLocaleDateString('id-ID', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })
+                      ) : (
+                        <span className="text-xs italic text-slate-400">belum ditanggal</span>
+                      )}
                     </td>
                     <td className="py-2">
                       <StatusBadge status={a.status} />

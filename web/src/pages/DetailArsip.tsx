@@ -80,7 +80,13 @@ export default function DetailArsip() {
         <dl className="space-y-2 text-sm">
           <div className="flex">
             <dt className="w-40 text-slate-500">Nomor</dt>
-            <dd className="text-slate-800">{arsip.nomor ?? '—'}</dd>
+            <dd className="text-slate-800">
+              {arsip.nomor ? (
+                <span className="font-mono">{arsip.nomor}</span>
+              ) : (
+                <span className="italic text-slate-400">Belum ada nomor arsip</span>
+              )}
+            </dd>
           </div>
           <div className="flex">
             <dt className="w-40 text-slate-500">Subbagian</dt>
@@ -89,13 +95,15 @@ export default function DetailArsip() {
           <div className="flex">
             <dt className="w-40 text-slate-500">Tanggal Dokumen</dt>
             <dd className="text-slate-800">
-              {arsip.tanggalDokumen
-                ? new Date(arsip.tanggalDokumen).toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })
-                : '—'}
+              {arsip.tanggalDokumen ? (
+                new Date(arsip.tanggalDokumen).toLocaleDateString('id-ID', {
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric',
+                })
+              ) : (
+                <span className="italic text-slate-400">Belum diisi tanggal dokumen</span>
+              )}
             </dd>
           </div>
           <div className="flex">
@@ -111,7 +119,7 @@ export default function DetailArsip() {
                   Buka Dokumen ({arsip.fileNama})
                 </a>
               ) : (
-                '—'
+                <span className="italic text-slate-400">Arsip fisik (belum digital)</span>
               )}
             </dd>
           </div>
