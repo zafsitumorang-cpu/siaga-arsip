@@ -38,7 +38,6 @@ export default function DaftarArsip() {
   const status = params.get('status') ?? '';
 
   useEffect(() => {
-    api.get('/api/subbagian-list').catch(() => undefined);
     api
       .get('/api/arsip?pageSize=1')
       .then(() => undefined)
