@@ -123,8 +123,8 @@ export default function DaftarArsip() {
         </select>
       </div>
 
-      <div className="rounded-lg bg-white p-5 shadow-sm">
-        <table className="w-full text-left text-sm">
+      <div className="overflow-x-auto rounded-lg bg-white p-5 shadow-sm">
+        <table className="w-full min-w-[640px] text-left text-sm">
           <thead className="text-slate-500">
             <tr>
               <th className="pb-2">Judul</th>

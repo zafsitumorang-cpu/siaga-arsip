@@ -106,21 +106,21 @@ export default function Landing() {
     <main className="min-h-screen bg-slate-950 text-white">
       {/* NAVBAR */}
       <nav className="sticky top-0 z-40 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600 font-black text-white">SA</span>
-            <span className="text-lg font-bold">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
+          <div className="flex shrink-0 items-center gap-2.5">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-red-600 font-black text-white">SA</span>
+            <span className="text-base font-bold sm:text-lg">
               SIAGA <span className="text-red-500">ARSIP</span>
             </span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3">
             <a href="#fitur" className="hidden text-sm text-slate-300 transition-colors hover:text-white sm:block">Fitur</a>
             <a href="#statistik" className="hidden text-sm text-slate-300 transition-colors hover:text-white sm:block">Statistik</a>
             <Link
               to="/login"
-              className="rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-red-600/25 transition-all hover:bg-red-500 active:scale-95"
+              className="whitespace-nowrap rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-lg shadow-red-600/25 transition-all hover:bg-red-500 active:scale-95 sm:px-4"
             >
-              Masuk Aplikasi
+              Masuk
             </Link>
           </div>
         </div>

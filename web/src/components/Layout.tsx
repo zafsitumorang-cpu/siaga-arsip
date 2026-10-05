@@ -1,13 +1,16 @@
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import {
   Archive,
   BarChart3,
   FileUp,
   Home,
   LogOut,
+  Menu,
   User,
   Tag,
   Settings,
+  X,
 } from 'lucide-react';
 
 const subbagianItems = [
@@ -33,79 +36,126 @@ const menu = [
 
 export default function Layout({ username }: { username: string }) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  // Tutup drawer saat pindah halaman
+  useEffect(() => {
+    setDrawerOpen(false);
+  }, [location.pathname, location.search]);
+
+  const sidebarContent = (
+    <>
+      <div className="px-5 py-6">
+        <div className="text-lg font-extrabold tracking-wide text-white">
+          SIAGA <span className="text-red-500">ARSIP</span>
+        </div>
+        <div className="mt-0.5 text-[11px] text-slate-400">Bawaslu Kab. Aceh Timur</div>
+      </div>
+
+      <nav className="flex-1 space-y-1 overflow-y-auto px-3">
+        {menu.map(({ to, label, icon: Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={to === '/'}
+            onClick={() => setDrawerOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                isActive
+                  ? 'bg-red-600 text-white shadow'
+                  : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+              }`
+            }
+          >
+            <Icon size={17} />
+            {label}
+          </NavLink>
+        ))}
+
+        <div className="px-3 pb-1 pt-5 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+          Arsip per Subbag
+        </div>
+        {subbagianItems.map(({ to, label, color }) => (
+          <NavLink
+            key={to}
+            to={to}
+            title={label}
+            onClick={() => setDrawerOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
+                isActive ? 'bg-slate-800 text-white' : 'text-slate-400 hover:bg-slate-800/60 hover:text-white'
+              }`
+            }
+          >
+            <span className={`h-2 w-2 shrink-0 rounded-full ${color}`} />
+            <span className="truncate">{label}</span>
+          </NavLink>
+        ))}
+      </nav>
+
+      <div className="border-t border-slate-800 p-3">
+        <div className="mb-2 flex items-center gap-2 px-2 text-xs text-slate-400">
+          <User size={14} />
+          {username}
+        </div>
+        <button
+          onClick={async () => {
+            await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }).catch(
+              () => undefined,
+            );
+            window.location.href = '/login';
+          }}
+          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
+        >
+          <LogOut size={16} />
+          Keluar
+        </button>
+      </div>
+    </>
+  );
 
   return (
     <div className="flex min-h-screen bg-slate-100">
-      <aside className="flex w-60 shrink-0 flex-col bg-slate-900 text-slate-300">
-        <div className="px-5 py-6">
-          <div className="text-lg font-extrabold tracking-wide text-white">
-            SIAGA <span className="text-red-500">ARSIP</span>
-          </div>
-          <div className="mt-0.5 text-[11px] text-slate-400">Bawaslu Kab. Aceh Timur</div>
-        </div>
-
-        <nav className="flex-1 space-y-1 overflow-y-auto px-3">
-          {menu.map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={to === '/'}
-              className={({ isActive }) =>
-                `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'bg-red-600 text-white shadow'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                }`
-              }
-            >
-              <Icon size={17} />
-              {label}
-            </NavLink>
-          ))}
-
-          <div className="px-3 pb-1 pt-5 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-            Arsip per Subbag
-          </div>
-          {subbagianItems.map(({ to, label, color }) => (
-            <NavLink
-              key={to}
-              to={to}
-              title={label}
-              className={({ isActive }) =>
-                `flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors ${
-                  isActive ? 'bg-slate-800 text-white' : 'text-slate-400 hover:bg-slate-800/60 hover:text-white'
-                }`
-              }
-            >
-              <span className={`h-2 w-2 shrink-0 rounded-full ${color}`} />
-              <span className="truncate">{label}</span>
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="border-t border-slate-800 p-3">
-          <div className="mb-2 flex items-center gap-2 px-2 text-xs text-slate-400">
-            <User size={14} />
-            {username}
-          </div>
-          <button
-            onClick={async () => {
-              await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }).catch(
-                () => undefined,
-              );
-              window.location.href = '/login';
-            }}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
-          >
-            <LogOut size={16} />
-            Keluar
-          </button>
-        </div>
+      {/* Sidebar desktop (>= lg) */}
+      <aside className="hidden w-60 shrink-0 flex-col bg-slate-900 text-slate-300 lg:flex">
+        {sidebarContent}
       </aside>
 
+      {/* Drawer mobile (< lg) */}
+      {drawerOpen && (
+        <div className="fixed inset-0 z-40 lg:hidden">
+          <div
+            className="animate-fade-in absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+            onClick={() => setDrawerOpen(false)}
+            aria-hidden
+          />
+          <aside className="animate-fade-in absolute left-0 top-0 flex h-full w-64 flex-col bg-slate-900 text-slate-300 shadow-2xl">
+            <button
+              type="button"
+              onClick={() => setDrawerOpen(false)}
+              className="absolute right-3 top-3 rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+              aria-label="Tutup menu"
+            >
+              <X size={20} />
+            </button>
+            {sidebarContent}
+          </aside>
+        </div>
+      )}
+
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Header atas: judul + search global + notifikasi + profil */}
-        <header className="sticky top-0 z-10 flex items-center gap-4 border-b border-slate-200 bg-white px-6 py-3 shadow-sm">
+        {/* Header atas: hamburger (mobile) + search global + notifikasi + profil */}
+        <header className="sticky top-0 z-10 flex items-center gap-3 border-b border-slate-200 bg-white px-4 py-3 shadow-sm sm:px-6">
+          <button
+            type="button"
+            onClick={() => setDrawerOpen(true)}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 lg:hidden"
+            aria-label="Buka menu"
+          >
+            <Menu size={20} />
+          </button>
+
           <div className="hidden items-center gap-3 md:flex">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600 text-sm font-extrabold text-white">
               SA
@@ -148,7 +198,7 @@ export default function Layout({ username }: { username: string }) {
             </div>
           </form>
 
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3">
             <button
               type="button"
               title="Notifikasi — belum ada yang baru"
@@ -180,7 +230,7 @@ export default function Layout({ username }: { username: string }) {
           </div>
         </header>
 
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-4 sm:p-6">
           <Outlet />
         </main>
 
