@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../lib/api';
-import { Eye, EyeOff, Loader2, Lock, LogIn, ShieldCheck, User } from 'lucide-react';
+import { Eye, EyeOff, Loader2, Lock, LogIn, User } from 'lucide-react';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -46,15 +46,7 @@ export default function Login() {
         <div className="animate-fade-up rounded-2xl border border-white/10 bg-white/5 p-5 shadow-2xl backdrop-blur-md">
           {/* Logo */}
           <div className="mb-5 text-center">
-            <div className="animate-pop mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-red-600 shadow-lg shadow-red-600/30">
-              <ShieldCheck size={22} className="text-white" />
-            </div>
-            <h1 className="text-xl font-black text-white">
-              SIAGA <span className="text-red-500">ARSIP</span>
-            </h1>
-            <p className="mt-1 text-sm text-slate-400">
-              Bawaslu Kabupaten Aceh Timur
-            </p>
+            <img src="/logo-banner-putih-96.png" alt="Bawaslu Kabupaten Aceh Timur — SIAGA ARSIP" className="animate-pop mx-auto mb-4 w-56" />
           </div>
 
           <form onSubmit={onSubmit} className="space-y-4">

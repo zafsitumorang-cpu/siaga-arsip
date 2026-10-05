@@ -47,10 +47,7 @@ export default function Layout({ username }: { username: string }) {
   const sidebarContent = (
     <>
       <div className="px-5 py-6">
-        <div className="text-lg font-extrabold tracking-wide text-white">
-          SIAGA <span className="text-red-500">ARSIP</span>
-        </div>
-        <div className="mt-0.5 text-[11px] text-slate-400">Bawaslu Kab. Aceh Timur</div>
+        <img src="/logo-banner-putih-64.png" alt="Bawaslu Kab. Aceh Timur — SIAGA ARSIP" className="w-40" />
       </div>
 
       <nav className="scrollbar-none flex-1 space-y-1 overflow-y-auto px-3">
@@ -157,17 +154,7 @@ export default function Layout({ username }: { username: string }) {
           </button>
 
           <div className="hidden items-center gap-3 md:flex">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600 text-sm font-extrabold text-white">
-              SA
-            </div>
-            <div>
-              <div className="text-sm font-extrabold leading-tight text-slate-800">
-                SIAGA <span className="text-red-600">ARSIP</span>
-              </div>
-              <div className="text-[10px] leading-tight text-slate-500">
-                Administrasi & Digitalisasi Arsip
-              </div>
-            </div>
+            <img src="/logo-bawaslu-banner.png" alt="Bawaslu Kab. Aceh Timur — SIAGA ARSIP" className="h-10 w-auto" />
           </div>
 
           <form
