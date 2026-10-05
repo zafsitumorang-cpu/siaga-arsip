@@ -119,8 +119,9 @@ export default function Landing() {
       <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
           <div className="flex shrink-0 items-center gap-2.5">
-            <img src="/logo-bawaslu.png" alt="Logo Bawaslu" className="h-9 w-9 shrink-0 object-contain" />
-            <span className="font-heading text-base font-bold tracking-tight text-slate-900 sm:text-lg">
+            <img src="/logo-bawaslu-banner.png" alt="Bawaslu Kabupaten Aceh Timur" className="h-10 w-auto shrink-0" />
+            <span className="hidden h-8 w-px shrink-0 bg-slate-200 sm:block" aria-hidden />
+            <span className="hidden font-heading text-base font-bold tracking-tight text-slate-900 sm:block">
               SIAGA <span className="text-[#D22326]">ARSIP</span>
             </span>
           </div>
@@ -304,7 +305,7 @@ export default function Landing() {
       <footer className="border-t border-slate-200 bg-white py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
           <div className="flex items-center gap-2">
-            <img src="/logo-bawaslu.png" alt="Logo Bawaslu" className="h-8 w-8 shrink-0 object-contain" />
+            <img src="/logo-bawaslu-banner-64.png" alt="Bawaslu Kabupaten Aceh Timur" className="h-9 w-auto shrink-0" />
             <span className="text-sm text-slate-600">© 2026 Bawaslu Kabupaten Aceh Timur</span>
           </div>
           <div className="flex gap-6 text-sm text-slate-500">
