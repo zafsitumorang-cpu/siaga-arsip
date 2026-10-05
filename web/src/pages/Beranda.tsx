@@ -4,6 +4,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react';
 import { Skeleton, StatSkeletonGrid, TableSkeletonRows } from '../components/Loading';
 import {
   ArrowRight,
+  Hand,
   BarChart3,
   Cloud,
   FileUp,
@@ -225,8 +226,8 @@ export default function Beranda() {
                   <tr>
                     <td colSpan={4} className="py-6 text-center">
                       <div className="mx-auto max-w-md">
-                        <p className="mb-1 font-semibold text-slate-700">
-                          👋 Selamat datang! Mari mulai dari sini.
+                        <p className="mb-1 flex items-center justify-center gap-2 font-semibold text-slate-700">
+                          <Hand size={18} className="text-sky-600" aria-hidden /> Selamat datang! Mari mulai dari sini.
                         </p>
                         <p className="mb-3 text-sm text-slate-500">
                           Belum ada arsip tercatat. Langkah pertama: unggah arsip pertama Anda

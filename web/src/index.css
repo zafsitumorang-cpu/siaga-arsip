@@ -1,6 +1,15 @@
+/* Design system "Trust & Authority" — Lexend (heading) + Source Sans 3 (body)
+   Diimpor via <link> di index.html agar tidak memblokir render (font-display swap). */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+}
+h1, h2, h3, h4 {
+  font-family: 'Lexend', system-ui, sans-serif;
+}
 
 /* Scrollbar halus: sembunyikan secara visual, scroll tetap berfungsi
    (sidebar & area konten internal) */
