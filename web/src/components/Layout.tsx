@@ -38,10 +38,12 @@ export default function Layout({ username }: { username: string }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   // Tutup drawer saat pindah halaman
   useEffect(() => {
     setDrawerOpen(false);
+    setProfileOpen(false);
   }, [location.pathname, location.search]);
 
   const sidebarContent = (
@@ -91,24 +93,6 @@ export default function Layout({ username }: { username: string }) {
         ))}
       </nav>
 
-      <div className="border-t border-slate-800 p-3">
-        <div className="mb-2 flex items-center gap-2 px-2 text-xs text-slate-400">
-          <User size={14} />
-          {username}
-        </div>
-        <button
-          onClick={async () => {
-            await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }).catch(
-              () => undefined,
-            );
-            window.location.href = '/login';
-          }}
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
-        >
-          <LogOut size={16} />
-          Keluar
-        </button>
-      </div>
     </>
   );
 
@@ -205,14 +189,49 @@ export default function Layout({ username }: { username: string }) {
                 />
               </svg>
             </button>
-            <div className="flex items-center gap-2 rounded-full border border-slate-200 py-1 pl-1 pr-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-200 text-xs font-bold text-slate-600">
-                {username.slice(0, 1).toUpperCase()}
-              </div>
-              <div className="hidden text-left sm:block">
-                <div className="text-xs font-semibold capitalize text-slate-700">{username}</div>
-                <div className="text-[10px] text-slate-400">Bawaslu Aceh Timur</div>
-              </div>
+            <div className="relative">
+              <button
+                type="button"
+                aria-label="Menu profil"
+                aria-expanded={profileOpen}
+                onClick={() => setProfileOpen((v) => !v)}
+                className="flex items-center gap-2 rounded-full border border-slate-200 py-1 pl-1 pr-3 transition-colors hover:bg-slate-50"
+              >
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-slate-200 text-xs font-bold text-slate-600">
+                  {username.slice(0, 1).toUpperCase()}
+                </div>
+                <div className="hidden text-left sm:block">
+                  <div className="text-xs font-semibold capitalize text-slate-700">{username}</div>
+                  <div className="text-[10px] text-slate-400">Bawaslu Aceh Timur</div>
+                </div>
+              </button>
+              {profileOpen && (
+                <>
+                  <div
+                    className="fixed inset-0 z-40"
+                    aria-hidden
+                    onClick={() => setProfileOpen(false)}
+                  />
+                  <div className="animate-fade-up absolute right-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg">
+                    <div className="border-b border-slate-100 px-4 py-3">
+                      <div className="text-sm font-semibold capitalize text-slate-800">{username}</div>
+                      <div className="text-xs text-slate-400">Bawaslu Aceh Timur</div>
+                    </div>
+                    <button
+                      onClick={async () => {
+                        await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' }).catch(
+                          () => undefined,
+                        );
+                        window.location.href = '/login';
+                      }}
+                      className="flex w-full items-center gap-3 px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-[#D22326]"
+                    >
+                      <LogOut size={16} />
+                      Keluar
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </header>

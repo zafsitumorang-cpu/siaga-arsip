@@ -82,8 +82,12 @@ test.describe('Aplikasi (login)', () => {
     await assertNoHorizontalOverflow(page, 'beranda');
   });
 
-  test('Tombol Keluar terlihat tanpa scroll (regresi sidebar)', async ({ page }) => {
+  test('Menu profil: klik avatar → dropdown dengan Keluar (regresi posisi kanan atas)', async ({ page }) => {
     await page.goto(`${BASE}/`);
+    const avatar = page.locator('button[aria-label="Menu profil"]');
+    await expect(avatar).toBeVisible();
+    await expect(avatar).toBeInViewport({ ratio: 0.5 });
+    await avatar.click();
     const keluar = page.getByRole('button', { name: 'Keluar' });
     await expect(keluar).toBeVisible();
     await expect(keluar).toBeInViewport({ ratio: 0.5 });
@@ -118,7 +122,7 @@ test.describe('Aplikasi (login)', () => {
     await burger.click();
     const drawer = page.locator('aside').nth(1);
     await expect(drawer).toBeVisible();
-    for (const menu of ['Beranda', 'Arsip', 'Upload', 'Klasifikasi', 'Laporan', 'Pengaturan', 'Keluar']) {
+    for (const menu of ['Beranda', 'Arsip', 'Upload', 'Klasifikasi', 'Laporan', 'Pengaturan']) {
       await expect(drawer.getByText(menu, { exact: true })).toBeVisible();
     }
     // pilih menu → drawer menutup & pindah halaman
