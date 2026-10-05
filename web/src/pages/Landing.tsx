@@ -21,8 +21,8 @@ import {
 
 /**
  * Landing — tema terang (putih) dengan palet logo Bawaslu:
- * merah #E30613 (perisai + surat suara) sebagai aksi utama,
- * emas #D5B267 (panel perisai) sebagai aksen institusi.
+ * merah #D22326 (perisai + surat suara) sebagai aksi utama,
+ * emas #D2AD46 (panel perisai) sebagai aksen institusi.
  * Teks navy/slate untuk kontras AA. Font: Lexend + Source Sans 3.
  */
 
@@ -119,9 +119,9 @@ export default function Landing() {
       <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
           <div className="flex shrink-0 items-center gap-2.5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#E30613] font-heading font-black text-white">SA</span>
+            <img src="/logo-bawaslu.png" alt="Logo Bawaslu" className="h-9 w-9 shrink-0 object-contain" />
             <span className="font-heading text-base font-bold tracking-tight text-slate-900 sm:text-lg">
-              SIAGA <span className="text-[#E30613]">ARSIP</span>
+              SIAGA <span className="text-[#D22326]">ARSIP</span>
             </span>
           </div>
           <div className="flex shrink-0 items-center gap-2">
@@ -130,7 +130,7 @@ export default function Landing() {
             <a href="#keamanan" className="hidden rounded-lg px-3 py-2 text-sm text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 sm:block">Keamanan</a>
             <Link
               to="/login"
-              className="whitespace-nowrap rounded-lg bg-[#C00510] px-4 py-2 font-heading text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#A0040D] active:scale-95"
+              className="whitespace-nowrap rounded-lg bg-[#B01E21] px-4 py-2 font-heading text-sm font-semibold text-white shadow-sm transition-all hover:bg-[#A0040D] active:scale-95"
             >
               Masuk
             </Link>
@@ -140,17 +140,17 @@ export default function Landing() {
 
       {/* HERO */}
       <header className="relative overflow-hidden border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
-        <div className="pointer-events-none absolute -top-24 left-1/2 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-[#E30613]/5 blur-[100px]" />
-        <div className="pointer-events-none absolute right-0 top-20 h-[280px] w-[360px] rounded-full bg-[#D5B267]/15 blur-[90px]" />
+        <div className="pointer-events-none absolute -top-24 left-1/2 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-[#D22326]/5 blur-[100px]" />
+        <div className="pointer-events-none absolute right-0 top-20 h-[280px] w-[360px] rounded-full bg-[#D2AD46]/15 blur-[90px]" />
 
         <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-16 text-center sm:pt-20">
-          <div className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-[#D5B267]/50 bg-[#D5B267]/10 px-4 py-1.5 text-sm font-medium text-[#8a6d2f]">
+          <div className="animate-fade-up mb-6 inline-flex items-center gap-2 rounded-full border border-[#D2AD46]/50 bg-[#D2AD46]/10 px-4 py-1.5 text-sm font-medium text-[#8a6b2a]">
             <Landmark size={15} aria-hidden />
             Bawaslu Kabupaten Aceh Timur
           </div>
           <h1 className="animate-fade-up mx-auto max-w-3xl font-heading text-4xl font-black leading-tight tracking-tight text-slate-900 sm:text-6xl" style={{ animationDelay: '100ms' }}>
             Arsip Tertata,{' '}
-            <span className="text-[#E30613]">Kinerja Meningkat</span>
+            <span className="text-[#D22326]">Kinerja Meningkat</span>
           </h1>
           <p className="animate-fade-up mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-slate-600" style={{ animationDelay: '200ms' }}>
             Sistem administrasi &amp; digitalisasi arsip untuk pengawasan pemilu yang lebih baik.
@@ -159,7 +159,7 @@ export default function Landing() {
           <div className="animate-fade-up mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row" style={{ animationDelay: '300ms' }}>
             <Link
               to="/login"
-              className="group inline-flex items-center gap-2 rounded-xl bg-[#C00510] px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-[#E30613]/20 transition-all hover:bg-[#A0040D] hover:shadow-[#E30613]/30 active:scale-95"
+              className="group inline-flex items-center gap-2 rounded-xl bg-[#B01E21] px-7 py-3.5 font-heading font-semibold text-white shadow-lg shadow-[#D22326]/20 transition-all hover:bg-[#A0040D] hover:shadow-[#D22326]/30 active:scale-95"
             >
               Masuk Aplikasi
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" aria-hidden />
@@ -177,16 +177,16 @@ export default function Landing() {
       {/* STATISTIK LIVE */}
       <section id="statistik" aria-label="Statistik arsip live" className="mx-auto -mt-8 max-w-5xl px-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <StatCard icon={FolderOpen} value={error ? null : stat ? stat.total : null} label="Total Arsip" tone="bg-[#E30613]/10 text-[#B00510]" delay={0} />
+          <StatCard icon={FolderOpen} value={error ? null : stat ? stat.total : null} label="Total Arsip" tone="bg-[#D22326]/10 text-[#A81C1F]" delay={0} />
           <StatCard icon={FileCheck2} value={error ? null : stat ? stat.terverifikasi : null} label="Arsip Terverifikasi" tone="bg-emerald-50 text-emerald-700" delay={120} />
-          <StatCard icon={Cloud} value={error ? null : stat ? stat.digital : null} label="Arsip Digital" tone="bg-[#D5B267]/20 text-[#8a6d2f]" delay={240} />
+          <StatCard icon={Cloud} value={error ? null : stat ? stat.digital : null} label="Arsip Digital" tone="bg-[#D2AD46]/20 text-[#8a6b2a]" delay={240} />
         </div>
       </section>
 
       {/* FITUR */}
       <section id="fitur" className="mx-auto max-w-6xl px-6 py-24">
         <div className="mb-14 text-center">
-          <p className="font-heading text-sm font-semibold uppercase tracking-widest text-[#B00510]">Fitur Utama</p>
+          <p className="font-heading text-sm font-semibold uppercase tracking-widest text-[#A81C1F]">Fitur Utama</p>
           <h2 className="mt-2 font-heading text-3xl font-bold text-slate-900 sm:text-4xl">Semua yang Anda Butuhkan</h2>
           <p className="mt-3 text-slate-600">Untuk tata kelola arsip yang modern dan akuntabel</p>
         </div>
@@ -194,10 +194,10 @@ export default function Landing() {
           {fitur.map((f, i) => (
             <div
               key={f.title}
-              className="hover-lift animate-fade-up group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-[#E30613]/40"
+              className="hover-lift animate-fade-up group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-[#D22326]/40"
               style={{ animationDelay: `${i * 100}ms` }}
             >
-              <div className="mb-4 inline-flex rounded-xl bg-[#E30613]/10 p-3 text-[#B00510] transition-colors group-hover:bg-[#E30613]/15">
+              <div className="mb-4 inline-flex rounded-xl bg-[#D22326]/10 p-3 text-[#A81C1F] transition-colors group-hover:bg-[#D22326]/15">
                 <f.icon size={24} aria-hidden />
               </div>
               <h3 className="mb-2 font-heading font-bold text-slate-900">{f.title}</h3>
@@ -211,7 +211,7 @@ export default function Landing() {
       <section aria-label="Alur kerja" className="border-y border-slate-200 bg-slate-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="mb-12 text-center">
-            <p className="font-heading text-sm font-semibold uppercase tracking-widest text-[#B00510]">Alur Kerja</p>
+            <p className="font-heading text-sm font-semibold uppercase tracking-widest text-[#A81C1F]">Alur Kerja</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-slate-900 sm:text-4xl">Tiga Langkah Saja</h2>
           </div>
           <ol className="grid grid-cols-1 gap-8 sm:grid-cols-3">
@@ -221,7 +221,7 @@ export default function Landing() {
               { icon: ScrollText, judul: '3. Lapor', desc: 'Rekapitulasi per subbagian siap dipresentasikan dalam satu klik.' },
             ].map((s, i) => (
               <li key={s.judul} className="animate-fade-up relative text-center" style={{ animationDelay: `${i * 120}ms` }}>
-                <div className="mx-auto mb-4 inline-flex rounded-2xl border border-[#E30613]/15 bg-white p-4 text-[#B00510] shadow-sm">
+                <div className="mx-auto mb-4 inline-flex rounded-2xl border border-[#D22326]/15 bg-white p-4 text-[#A81C1F] shadow-sm">
                   <s.icon size={28} aria-hidden />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-slate-900">{s.judul}</h3>
@@ -236,9 +236,9 @@ export default function Landing() {
       <section id="keamanan" className="mx-auto max-w-6xl px-6 py-24">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="font-heading text-sm font-semibold uppercase tracking-widest text-[#B00510]">Keamanan</p>
+            <p className="font-heading text-sm font-semibold uppercase tracking-widest text-[#A81C1F]">Keamanan</p>
             <h2 className="mt-2 font-heading text-3xl font-bold text-slate-900 sm:text-4xl">
-              Aman untuk <span className="text-[#E30613]">Dokumen Negara</span>
+              Aman untuk <span className="text-[#D22326]">Dokumen Negara</span>
             </h2>
             <p className="mt-4 leading-relaxed text-slate-600">
               Data kearsipan Bawaslu bersifat sensitif. SIAGA ARSIP dibangun dengan prinsip
@@ -247,7 +247,7 @@ export default function Landing() {
             <ul className="mt-8 space-y-4">
               {keunggulan.map((k) => (
                 <li key={k.text} className="flex items-start gap-3">
-                  <span className="mt-0.5 shrink-0 rounded-lg bg-[#E30613]/10 p-2 text-[#B00510]">
+                  <span className="mt-0.5 shrink-0 rounded-lg bg-[#D22326]/10 p-2 text-[#A81C1F]">
                     <k.icon size={18} aria-hidden />
                   </span>
                   <span className="text-slate-700">{k.text}</span>
@@ -281,7 +281,7 @@ export default function Landing() {
 
       {/* CTA AKHIR */}
       <section className="relative overflow-hidden border-t border-slate-200 bg-slate-50">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[280px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#E30613]/5 blur-[90px]" />
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[280px] w-[560px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D22326]/5 blur-[90px]" />
         <div className="relative mx-auto max-w-3xl px-6 py-24 text-center">
           <h2 className="animate-fade-up font-heading text-3xl font-bold text-slate-900 sm:text-4xl">
             Siap Modernisasi Tata Kelola Arsip?
@@ -291,7 +291,7 @@ export default function Landing() {
           </p>
           <Link
             to="/login"
-            className="animate-fade-up mt-8 inline-flex items-center gap-2 rounded-xl bg-[#C00510] px-8 py-4 font-heading font-bold text-white shadow-lg shadow-[#E30613]/20 transition-all hover:bg-[#A0040D] active:scale-95"
+            className="animate-fade-up mt-8 inline-flex items-center gap-2 rounded-xl bg-[#B01E21] px-8 py-4 font-heading font-bold text-white shadow-lg shadow-[#D22326]/20 transition-all hover:bg-[#A0040D] active:scale-95"
             style={{ animationDelay: '200ms' }}
           >
             Masuk Aplikasi Sekarang
@@ -304,7 +304,7 @@ export default function Landing() {
       <footer className="border-t border-slate-200 bg-white py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
           <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#E30613] text-xs font-black text-white">SA</span>
+            <img src="/logo-bawaslu.png" alt="Logo Bawaslu" className="h-8 w-8 shrink-0 object-contain" />
             <span className="text-sm text-slate-600">© 2026 Bawaslu Kabupaten Aceh Timur</span>
           </div>
           <div className="flex gap-6 text-sm text-slate-500">
