@@ -50,3 +50,10 @@ export const auditLogs = sqliteTable("audit_logs", {
   detail: text("detail").notNull().default(""),
   createdAt: text("created_at").notNull(),
 });
+
+export const systemSettings = sqliteTable("system_settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+  updatedBy: text("updated_by").notNull(),
+  updatedAt: text("updated_at").notNull(),
+});

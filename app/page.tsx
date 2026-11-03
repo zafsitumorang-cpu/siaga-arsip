@@ -1,9 +1,9 @@
-import { getChatGPTUser } from "./chatgpt-auth";
-import { Dashboard } from "./dashboard";
+import { chatGPTSignOutPath, getChatGPTUser } from "./chatgpt-auth";
+import { DashboardPro } from "./dashboard-pro";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const user = await getChatGPTUser();
-  return <Dashboard initialUser={{ name: user?.name || "Administrator", email: user?.email || "admin@bawaslu.go.id" }} />;
+  return <DashboardPro initialUser={{ name: user?.displayName || "Administrator", email: user?.email || "admin@bawaslu.go.id" }} signOutPath={chatGPTSignOutPath("/")} />;
 }

@@ -19,13 +19,18 @@ export async function GET(request: NextRequest) {
     subbagian && subbagian !== "Semua" ? eq(archives.subbagian, subbagian) : undefined,
     status && status !== "Semua" ? eq(archives.status, status as typeof archives.$inferSelect.status) : undefined,
   ].filter(Boolean);
-  const rows = await db.select().from(archives).where(filters.length ? and(...filters as never[]) : undefined).orderBy(desc(archives.uploadedAt)).limit(250);
-  return NextResponse.json({ data: rows.length ? rows : dummyArchives, demoMode: rows.length === 0 });
+  let rows = await db.select().from(archives).where(filters.length ? and(...filters as never[]) : undefined).orderBy(desc(archives.uploadedAt)).limit(250);
+  if (!rows.length && !query && (!subbagian || subbagian === "Semua") && (!status || status === "Semua")) {
+    await db.insert(archives).values(dummyArchives.map((item) => ({ ...item, status: item.status as "Menunggu Verifikasi" | "Terverifikasi" | "Ditolak" | "Inaktif", confidentiality: item.confidentiality as "Publik" | "Internal" | "Rahasia" }))).onConflictDoNothing();
+    rows = await db.select().from(archives).orderBy(desc(archives.uploadedAt)).limit(250);
+  }
+  return NextResponse.json({ data: rows, demoMode: rows.every((row) => row.fileKey === null) });
 }
 
 export async function POST(request: NextRequest) {
   const user = await getChatGPTUser();
   if (!user) return NextResponse.json({ error: "Autentikasi diperlukan" }, { status: 401 });
+  const db = getDb();
   const form = await request.formData();
   const file = form.get("file");
   if (!(file instanceof File)) return NextResponse.json({ error: "Berkas wajib diunggah" }, { status: 400 });
@@ -48,7 +53,7 @@ export async function POST(request: NextRequest) {
     fileKey: key,
     fileSize: file.size,
     mimeType: file.type || "application/octet-stream",
-    uploadedBy: user.name || user.email || "Pengguna",
+    uploadedBy: user.displayName || user.email || "Pengguna",
     uploadedAt: now,
     verifiedBy: null,
     verifiedAt: null,

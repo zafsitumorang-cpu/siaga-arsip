@@ -8,6 +8,13 @@
       "when": 1793683886145,
       "tag": "0000_oval_lilandra",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1793704240634,
+      "tag": "0001_stiff_molten_man",
+      "breakpoints": true
     }
   ]
 }
